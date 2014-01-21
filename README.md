@@ -54,7 +54,7 @@ For Android, NappDrawer requires to receive views instead of windows. You can us
 
 ```
 exports.createWindow = function(args) {
-	retrn Ti.UI[OS_IOS ? 'createWindow' : 'createView'](args);
+	return Ti.UI[OS_IOS ? 'createWindow' : 'createView'](args);
 };
 ```
 
