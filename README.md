@@ -20,9 +20,11 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 			<Window role="leftWindow">
 				<Label>I am left</Label>
 			</Window>
-			<Window role="centerWindow">
-				<Label>I am center</Label>
-			</Window>
+			<NavigationWindow role="centerWindow">
+				<Window>
+					<Label>I am center</Label>
+				</Window>
+			</NavigationWindow>
 			<Window role="rightWindow">
 				<Label>I am right</Label>
 			</Window>
