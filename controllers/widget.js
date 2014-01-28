@@ -60,6 +60,7 @@ _.each([
 	'animationMode',
 	'animationVelocity',
 	'showShadow',
+	'shadowWidth',
 	'shouldStretchDrawer',
 	'fading',
 	'parallaxAmount',
