@@ -3,7 +3,7 @@
 	"name": "NappDrawer Alloy Widget",
 	"description" : "An Alloy widget wrapping the NappDrawer module for Facebook-like sliding side menus.",
 	"author": "Fokke Zandbergen",
-	"version": "1.0",
+	"version": "1.0.1",
 	"copyright":"Copyright (c) 2014",
 	"license":"Apache License, Version 2.0",
 	"min-alloy-version": "1.3",

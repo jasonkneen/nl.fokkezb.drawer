@@ -103,6 +103,23 @@ _.each([
 	}
 });
 
+// events
+exports.on = function(event, callback, context) {
+	$.instance.addEventListener(event, callback);
+};
+
+exports.off = function(event, callback, context) {
+	$.instance.removeEventListener(event, callback);
+};
+
+exports.trigger = function(event, args) {
+	$.instance.fireEvent(event, callback, context);
+};
+
+exports.addEventListener = exports.on;
+exports.removeEventListener = exports.off;
+exports.fireEvent = exports.trigger;
+
 // helpers
 exports.closeLeftWindow = function() {
 	if ($.instance.isLeftWindowOpen()) {

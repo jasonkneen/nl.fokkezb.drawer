@@ -68,6 +68,9 @@ exports.createWindow = function(args) {
 ### open/close Left/Right Window
 For your convenience, the widget exposes 4 additional methods to **ONLY** open or close either the left or right window. The NappDrawer module only provides `toggle Left/Right Window` and `is Left/Right WindowOpen` methods, which of course can be combined to get the same result.
 
+## Changelog
+- 1.0.1: Passing through event binding to the drawer instance.
+
 ## License
 
 <pre>
