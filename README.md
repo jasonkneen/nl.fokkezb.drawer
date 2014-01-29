@@ -17,15 +17,20 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	```
 	<Alloy>
 		<Widget id="drawer" src="nl.fokkezb.drawer">
-			<Window role="leftWindow">
+			<Window module="xp.ui" role="leftWindow">
 				<Label>I am left</Label>
 			</Window>
-			<NavigationWindow role="centerWindow">
+			
+			<NavigationWindow platform="ios" role="centerWindow">
 				<Window>
 					<Label>I am center</Label>
 				</Window>
 			</NavigationWindow>
-			<Window role="rightWindow">
+			<View platform="android" role="centerWindow">
+				<Label>I am center</Label>
+			</View>
+			
+			<Window module="xp.ui" role="rightWindow">
 				<Label>I am right</Label>
 			</Window>
 		</Widget>
@@ -52,7 +57,7 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	Any NappDrawer property or method can be get, set or called via the widget, but you can also access the module and instance directly via `$.drawer.module` and `$.drawer.instance`.
 
 ### Android
-For Android, NappDrawer requires to receive views instead of windows. You can use the `platform` attribute to add conditional elements. An easier way to do this is to add a `module="xp.ui"` attribute to the `<Window>` elements and have a file in `app/lib/xp.ui.js` which has:
+For Android, NappDrawer requires to receive views instead of windows. You can use the `platform` attribute to add conditional elements like the examples does for the centerView. An easier way to do this is to add a `module="xp.ui"` attribute to the `<Window>` elements and have a file in `app/lib/xp.ui.js` which has:
 
 ```
 exports.createWindow = function(args) {
