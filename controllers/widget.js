@@ -98,22 +98,22 @@ _.each([
 
 		// we need wrapper function for Android
 		exports[fn] = function() {
-			$.instance[fn]();
+			return $.instance[fn]();
 		};
 	}
 });
 
 // events
 exports.on = function(event, callback, context) {
-	$.instance.addEventListener(event, callback);
+	return $.instance.addEventListener(event, callback);
 };
 
 exports.off = function(event, callback, context) {
-	$.instance.removeEventListener(event, callback);
+	return $.instance.removeEventListener(event, callback);
 };
 
 exports.trigger = function(event, args) {
-	$.instance.fireEvent(event, callback, context);
+	return $.instance.fireEvent(event, callback, context);
 };
 
 exports.addEventListener = exports.on;
@@ -123,24 +123,24 @@ exports.fireEvent = exports.trigger;
 // helpers
 exports.closeLeftWindow = function() {
 	if ($.instance.isLeftWindowOpen()) {
-		$.instance.toggleLeftWindow();
+		return $.instance.toggleLeftWindow();
 	}
 };
 
 exports.closeRightWindow = function() {
 	if ($.instance.isRightWindowOpen()) {
-		$.instance.toggleRightWindow();
+		return $.instance.toggleRightWindow();
 	}
 };
 
 exports.openLeftWindow = function() {
 	if (!$.instance.isLeftWindowOpen()) {
-		$.instance.toggleLeftWindow();
+		return $.instance.toggleLeftWindow();
 	}
 };
 
 exports.openRightWindow = function() {
 	if (!$.instance.isRightWindowOpen()) {
-		$.instance.toggleRightWindow();
+		return $.instance.toggleRightWindow();
 	}
 };
