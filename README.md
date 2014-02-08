@@ -15,34 +15,46 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 3. In your `app/views/index.xml` use it like this:
 
 	```
-	<Alloy>
-		<Widget id="drawer" src="nl.fokkezb.drawer">
-			<Window module="xp.ui" role="leftWindow">
-				<Label>I am left</Label>
-			</Window>
-			
-			<NavigationWindow platform="ios" role="centerWindow">
-				<Window>
-					<Label>I am center</Label>
-				</Window>
-			</NavigationWindow>
-			<View platform="android" role="centerWindow">
-				<Label>I am center</Label>
-			</View>
-			
-			<Window module="xp.ui" role="rightWindow">
-				<Label>I am right</Label>
-			</Window>
-		</Widget>
-	</Alloy>
+<Alloy>
+        <Widget id="drawer" src="nl.fokkezb.drawer">
+
+            <Window module="xp.ui" role="leftWindow">
+                <Label>I am left</Label>
+            </Window>
+
+            <NavigationWindow platform="ios" role="centerWindow">
+                <Window>
+                    <LeftNavButton>
+                        <Button onClick="toggle">Left</Button>
+                    </LeftNavButton>
+                    <Label>I am center</Label>
+                    <RightNavButton>
+                        <Button onClick="toggle">Right</Button>
+                    </RightNavButton>
+                </Window>
+            </NavigationWindow>
+            <View platform="android" role="centerWindow">
+                <Label>I am center</Label>
+            </View>
+
+            <Window module="xp.ui" role="rightWindow">
+                <Label>I am right</Label>
+            </Window>
+
+        </Widget>
+    </Alloy>
 	```
 	
 4. In your `app/styles/index.tss` use it like this:
 
 	```
 	"#drawer": {
+		openDrawerGestureMode: "OPEN_MODE_ALL",
 		closeDrawerGestureMode: "CLOSE_MODE_ALL",
 		leftDrawerWidth: 200
+	}
+	"Window": {
+		backgroundColor: 'white'
 	}
 	```
 	
@@ -52,6 +64,11 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 
 	```
 	$.drawer.open();
+	
+	function toggle(e) {
+		var fn = 'toggle' + e.source.title + 'Window';
+		$.drawer[fn]();
+	}
 	```
 	
 	Any NappDrawer property or method can be get, set or called via the widget, but you can also access the module and instance directly via `$.drawer.module` and `$.drawer.instance`.
