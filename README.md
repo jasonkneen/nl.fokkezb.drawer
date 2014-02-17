@@ -50,7 +50,7 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	```
 	"#drawer": {
 		openDrawerGestureMode: "OPEN_MODE_ALL",
-		closeDrawerGestureMode: "CLOSE_MODE_ALL",
+		closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
 		leftDrawerWidth: 200
 	}
 	"Window": {
