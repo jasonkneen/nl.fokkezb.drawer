@@ -45,6 +45,8 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
     </Alloy>
 	```
 	
+	**NOTE**: You can use `<Require>` or `<Widget>` within the widget, just make sure you set the `role` attribute on the view of the required view and not on the require-tag itself.
+	
 4. In your `app/styles/index.tss` use it like this:
 
 	```
