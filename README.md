@@ -5,7 +5,7 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 
 [![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://appcelerator.com/alloy/)
 
-## Usage [![gitTio](http://gitt.io/badge.png)](http://git.io/component/nl.fokkezb.drawer)
+## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.drawer)
 1. Install the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module for Android and/or iOS via [gitTio](http://gitt.io):
 
     `gittio install dk.napp.drawer -g -p [ios|android]`
