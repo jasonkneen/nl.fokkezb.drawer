@@ -113,7 +113,7 @@ exports.off = function(event, callback, context) {
 };
 
 exports.trigger = function(event, args) {
-	return $.instance.fireEvent(event, callback, context);
+	return $.instance.fireEvent(event, args);
 };
 
 exports.addEventListener = exports.on;
