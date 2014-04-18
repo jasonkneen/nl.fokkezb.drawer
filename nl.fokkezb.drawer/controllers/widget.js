@@ -92,6 +92,7 @@ _.each([
 	'isLeftWindowOpen',
 	'isRightWindowOpen',
 	'open',
+	'close'
 
 ], function(fn) {
 	if (!exports[fn]) {
