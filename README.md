@@ -76,6 +76,11 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	Any NappDrawer property or method can be get, set or called via the widget, but you can also access the module and instance directly via `$.drawer.module` and `$.drawer.instance`.
 
 ### Android
+
+#### Close mode
+For Android, always use `CLOSE_MODE_MARGIN` if the left/right window needs to be interacted with.
+
+#### Views instead of Windows
 For Android, NappDrawer requires to receive views instead of windows. You can use the `platform` attribute to add conditional elements like the examples does for the centerView. An easier way to do this is to add a `module="xp.ui"` attribute to the `<Window>` elements and have a file in `app/lib/xp.ui.js` which has:
 
 ```
