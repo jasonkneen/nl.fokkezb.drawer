@@ -1,4 +1,5 @@
-# NappDrawer Alloy Widget
+# Alloy *NappDrawer* Widget
+
 This is a widget for the [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework of [Appcelerator](http://www.appcelerator.com)'s [Titanium](http://www.appcelerator.com/platform) platform.
 
 It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mads Møller, which provides a sliding side menu as introduced by Facebook.
