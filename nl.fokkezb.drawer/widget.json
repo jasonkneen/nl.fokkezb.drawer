@@ -1,6 +1,6 @@
 {
 	"id": "nl.fokkezb.drawer",
-	"name": "NappDrawer Alloy Widget",
+	"name": "NappDrawer Widget",
 	"description" : "An Alloy widget wrapping the NappDrawer module for Facebook-like sliding side menus.",
 	"author": "Fokke Zandbergen",
 	"version": "1.0.1",

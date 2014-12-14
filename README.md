@@ -1,10 +1,8 @@
-# Alloy *NappDrawer* Widget
+# Alloy *NappDrawer* Widget [![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://appcelerator.com/alloy/)
 
 This is a widget for the [Alloy](http://projects.appcelerator.com/alloy/docs/Alloy-bootstrap/index.html) MVC framework of [Appcelerator](http://www.appcelerator.com)'s [Titanium](http://www.appcelerator.com/platform) platform.
 
 It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mads Møller, which provides a sliding side menu as introduced by Facebook.
-
-[![Appcelerator Titanium](http://www-static.appcelerator.com/badges/titanium-git-badge-sq.png)](http://appcelerator.com/titanium/) [![Appcelerator Alloy](http://www-static.appcelerator.com/badges/alloy-git-badge-sq.png)](http://appcelerator.com/alloy/)
 
 ## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.drawer)
 1. Install the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module for Android and/or iOS via [gitTio](http://gitt.io):
@@ -79,6 +77,11 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	Any NappDrawer property or method can be get, set or called via the widget, but you can also access the module and instance directly via `$.drawer.module` and `$.drawer.instance`.
 
 ### Android
+
+#### Close mode
+For Android, always use `CLOSE_MODE_MARGIN` if the left/right window needs to be interacted with.
+
+#### Views instead of Windows
 For Android, NappDrawer requires to receive views instead of windows. You can use the `platform` attribute to add conditional elements like the examples does for the centerView. An easier way to do this is to add a `module="xp.ui"` attribute to the `<Window>` elements and have a file in `app/lib/xp.ui.js` which has:
 
 ```
