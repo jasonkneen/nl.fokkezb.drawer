@@ -5,15 +5,14 @@ This is a widget for the [Alloy](http://projects.appcelerator.com/alloy/docs/All
 It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mads Møller, which provides a sliding side menu as introduced by Facebook.
 
 ## Usage [![gitTio](http://gitt.io/badge.png)](http://gitt.io/component/nl.fokkezb.drawer)
-1. Install the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module for Android and/or iOS via [gitTio](http://gitt.io):
 
-    `gittio install dk.napp.drawer -g -p [ios|android]`
-
-2. Install [this widget](http://gitt.io/component/nl.fokkezb.drawer) via [gitTio](http://gitt.io):
+1. Install [this widget](http://gitt.io/component/nl.fokkezb.drawer) via [gitTio](http://gitt.io):
 
 	`gittio install nl.fokkezb.drawer`
+
+	gitTio will automatically install the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module it depends on.
 	
-3. In your `app/views/index.xml` use it like this:
+2. In your `app/views/index.xml` use it like this:
 
 	```
 <Alloy>
