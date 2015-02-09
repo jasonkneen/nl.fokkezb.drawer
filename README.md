@@ -62,7 +62,7 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	
 	Any NappDrawer constants can be passed as strings.
 	
-5. In your `app/controlers/index.js` use it like this:
+5. In your `app/controllers/index.js` use it like this:
 
 	```
 	$.drawer.open();
