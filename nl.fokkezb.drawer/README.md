@@ -1,11 +1,11 @@
-# Alloy *NappDrawer* Widget
+# Alloy *Drawer* Widget
 
 You can find the README at [https://github.com/fokkezb/nl.fokkezb.drawer](https://github.com/fokkezb/nl.fokkezb.drawer)
 
 ## License
 
 <pre>
-Copyright 2014 Fokke Zandbergen
+Copyright 2014-2015 Fokke Zandbergen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
