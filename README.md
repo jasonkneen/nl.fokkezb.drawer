@@ -15,6 +15,8 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 3. Install [this widget](http://gitt.io/component/nl.fokkezb.drawer) via [gitTio](http://gitt.io):
 
 	`gittio install nl.fokkezb.drawer`
+
+	gitTio will automatically install the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module it depends on.
 	
 4. In your `app/views/index.xml` use it like this:
 
@@ -71,7 +73,7 @@ It wraps the [NappDrawer](http://gitt.io/component/dk.napp.drawer) module by Mad
 	
 	Any NappDrawer or DrawerLayout constants can be passed as strings.
 	
-6. In your `app/controlers/index.js` use it like this:
+6. In your `app/controllers/index.js` use it like this:
 
 	```
 	$.drawer.open();
