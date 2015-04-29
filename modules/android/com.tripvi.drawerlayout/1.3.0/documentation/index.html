@@ -1,0 +1,101 @@
+<h1>Ti.DrawerLayout Documentation</h1>
+<p>You can create a Drawer by calling <code>createDrawer</code> on the module. It must be added as a top-level view to a Ti.UI.Window. You may want to pass a <code>contentView</code> property at creation-time. In addition, you can also pass either a <code>leftView</code> or <code>rightView</code> property to add an actual drawer view to your layout. All of them (<code>contentView</code>, <code>leftView</code> and <code>rightView</code>) must be instances of Ti.UI.View.</p>
+<p>Here's an example:</p>
+<p>```javascript
+var TiDrawerLayout = require('com.tripvi.drawerlayout');
+var contentView = Ti.UI.createView();
+var leftView = Ti.UI.createTableView({ backgroundColor: '#ccc' });</p>
+<p>var drawer = TiDrawerLayout.createDrawer({
+    contentView: contentView,
+    leftView: leftView
+});
+```</p>
+<p>And this is how you'd do it in Alloy:</p>
+<p><code>xml
+&lt;Alloy&gt;
+  &lt;Window&gt;
+        &lt;Drawer id="drawer" module="com.tripvi.drawerlayout" /&gt;
+  &lt;/Window&gt;
+&lt;/Alloy&gt;</code></p>
+<p>```javascript
+var menu = Alloy.createController('menu');
+var main = Alloy.createController('main');</p>
+<p>$.drawer.setLeftView( menu.getView() );
+$.drawer.setContentView( main.getView() );</p>
+<p>```</p>
+<h2>Properties</h2>
+<ul>
+<li><code>leftView</code> <em>(Ti.UI.View)</em> - sets the left drawer</li>
+<li><code>rightView</code> <em>(Ti.UI.View)</em> - sets the right drawer</li>
+<li><code>centerView</code> <em>(Ti.UI.View)</em> - sets the center View</li>
+<li><code>isLeftDrawerOpen</code> <em>(Boolean)</em> - wether the left drawer is currently in an open state or not</li>
+<li><code>isLeftDrawerVisible</code> <em>(Boolean)</em> - wether the left drawer is currently visible on-screen or not</li>
+<li><code>isRightDrawerOpen</code> <em>(Boolean)</em> - wether the right drawer is currently in an open state or not</li>
+<li><code>isRightDrawerVisible</code> <em>(Boolean)</em> - wether the right drawer is currently visible on-screen or not</li>
+<li><code>leftDrawerWidth</code> <em>(Number/String)</em> - sets the width of the left drawer</li>
+<li><code>rightDrawerWidth</code> <em>(Number/String)</em> - sets the width of the right drawer</li>
+<li><code>drawerIndicatorEnabled</code> <em>(Boolean)</em> - wether it should use the ActionBarDrawerToggle or not</li>
+<li><code>drawerIndicatorImage</code> <em>(String)</em> - path to a custom drawer indicator image</li>
+<li><code>drawerLockMode</code> <em>(int)</em> - sets the lock mode constant. TiDrawerLayout.LOCK_MODE_UNLOCKED (default), TiDrawerLayout.LOCK_MODE_LOCKED_CLOSED, TiDrawerLayout.LOCK_MODE_LOCKED_OPEN</li>
+<li><code>drawerArrowIcon</code> <em>(Boolean)</em> - set this to <code>true</code> to get that fancy animation</li>
+<li><code>drawerArrowIconColor</code> <em>(String)</em> - sets the color of the drawerIcon animation</li>
+</ul>
+<h2>Methods</h2>
+<ul>
+<li><code>setLeftView()</code> - sets the value for the <code>leftView</code> property</li>
+<li><code>setRightView()</code> - sets the value for the <code>rightView</code> property</li>
+<li><code>setCenterView()</code> - sets the value for the <code>centerView</code> property</li>
+<li><code>replaceCenterView(view, backstack)</code> - same as <code>setCenterView</code> but with second parameter<ul>
+<li><code>view</code> <em>(Ti.UI.View)</em> - the new centerView</li>
+<li><code>backstack</code> <em>(Boolean)</em> - set this to <code>true</code> if you want to add this to the backstack</li>
+</ul>
+</li>
+<li><code>toggleLeftWindow()</code> - opens or closes the left drawer</li>
+<li><code>openLeftWindow()</code> - opens the left drawer</li>
+<li><code>closeLeftWindow()</code> - closes the left drawer</li>
+<li><code>toggleRightWindow()</code> - opens or closes the right drawer</li>
+<li><code>openRightWindow()</code> - opens the right drawer</li>
+<li><code>closeRightWindow()</code> - closes the right drawer</li>
+<li><code>getIsLeftDrawerOpen()</code> - returns the value of the <code>isLeftDrawerOpen</code> property</li>
+<li><code>getIsLeftDrawerVisible()</code> - returns the value of the <code>isLeftDrawerVisible</code> property</li>
+<li><code>getIsRightDrawerOpen()</code> - returns the value of the <code>isRightDrawerOpen</code> property</li>
+<li><code>getIsRightDrawerVisible()</code> - returns the value of the <code>isRightDrawerVisible</code> property</li>
+<li><code>setLeftDrawerWidth()</code> - sets the value for the <code>leftDrawerWidth</code> property</li>
+<li><code>setRightDrawerWidth()</code> - sets the value for the <code>rightDrawerWidth</code> property</li>
+<li><code>setDrawerIndicatorEnabled()</code> - sets the value for the <code>drawerIndicatorEnabled</code> property</li>
+<li><code>setDrawerIndicatorImage()</code> - sets the value for the <code>drawerIndicatorImage</code> property</li>
+<li><code>setDrawerLockMode()</code> - sets the value for the <code>drawerLockMode</code> property</li>
+<li><code>setDrawerArrowIcon()</code> - sets the value for the <code>drawerArrowIcon</code> property</li>
+<li><code>setDrawerArrowIconColor()</code> - sets the value for the <code>drawerArrowIconColor</code> property</li>
+</ul>
+<h2>Events</h2>
+<ul>
+<li>
+<p><code>change</code> - fires when the drawer motion state changes</p>
+<ul>
+<li><code>state</code> <em>(Number)</em> - the new drawer motion state</li>
+<li><code>idle</code> <em>(Boolean)</em> - indicates that any drawers are in an idle, settled state. No animation is in progress</li>
+<li><code>dragging</code> <em>(Boolean)</em> - indicates that a drawer is currently being dragged by the user</li>
+<li><code>settling</code> <em>(Boolean)</em> - indicates that a drawer is in the process of settling to a final position</li>
+</ul>
+</li>
+<li>
+<p><code>drawerslide</code> - fires when a drawer's position changes</p>
+<ul>
+<li><code>offset</code> <em>(Number)</em> - the new offset of this drawer within its range, from 0-1</li>
+<li><code>drawer</code> <em>(String)</em> - left or right</li>
+</ul>
+</li>
+<li>
+<p><code>draweropen</code> - fires when the drawer motion state changes</p>
+<ul>
+<li><code>drawer</code> <em>(String)</em> - left or right</li>
+</ul>
+</li>
+<li>
+<p><code>drawerclose</code> - fires when the drawer motion state changes</p>
+<ul>
+<li><code>drawer</code> <em>(String)</em> - left or right</li>
+</ul>
+</li>
+</ul>

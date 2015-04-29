@@ -1,0 +1,9 @@
+#appname:Drawer
+#appid:nl.fokkezb.drawer
+#type:iphone
+#guid:1e7d3b4c-06b9-4d06-87a3-ca09b3ce96f8
+#version:1.0
+#publisher:fokke
+#url:http://fokkezb.nl
+#image:appicon.png
+#desc:Wrapper for dk.napp.drawer and ti.drawerlayout

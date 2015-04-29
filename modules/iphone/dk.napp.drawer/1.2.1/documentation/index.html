@@ -1,0 +1,127 @@
+<h1>Napp Drawer Module</h1>
+<h2>Description</h2>
+<p>The Napp Drawer module extends the Appcelerator Titanium Mobile framework. 
+The module is licensed under the MIT license.</p>
+<p>Thanks to the folks at Mutual Mobile for their great work with MMDrawerController https://github.com/mutualmobile/MMDrawerController</p>
+<h3>Get the module</h3>
+<p><strong>Find the newest version in the dist folder</strong></p>
+<h2>Referencing the module in your Ti mobile application</h2>
+<p>Simply add the following lines to your <code>tiapp.xml</code> file:</p>
+<pre><code>&lt;modules&gt;
+    &lt;module platform="iphone"&gt;dk.napp.drawer&lt;/module&gt; 
+&lt;/modules&gt;
+</code></pre>
+<h2>Reference</h2>
+<p>For more detailed code examples take a look into the example app</p>
+<h3>centerWindow, leftWindow, rightWindow</h3>
+<p>Napp Drawer does not require you to use the 3 windows. You can also use either the combo of center/left or center/right for your desired needs. </p>
+<p><code>javascript
+var mainWindow = NappDrawerModule.createDrawer({
+    centerWindow: navController, 
+    leftWindow: winLeft,
+    rightWindow: winRight,
+    closeDrawerGestureMode: NappDrawerModule.CLOSE_MODE_ALL,
+    openDrawerGestureMode: NappDrawerModule.OPEN_MODE_ALL,
+    leftDrawerWidth: 180,
+    rightDrawerWidth: 220
+});</code> </p>
+<h2>API Properties</h2>
+<h3>CenterWindow, leftWindow, rightWindow</h3>
+<p>A method that allow change of a window. You can either use a window or a navigation group. 
+<code>javascript   
+var newWin = Ti.UI.createWindow({
+    backgroundColor: "#FF0000"
+};
+mainWindow.setCenterWindow(newWin);</code></p>
+<h3>LeftDrawerWidth, rightDrawerWidth</h3>
+<p>Update the width with these methods. The default width is <code>280</code></p>
+<p><code>javascript
+mainWindow.setLeftDrawerWidth(160);</code></p>
+<h3>CenterHiddenInteractionMode</h3>
+<p>Set different types of interactivity for the centerWindow. </p>
+<p><code>javascript
+mainWindow.setCenterHiddenInteractionMode(NappDrawerModule.OPEN_CENTER_MODE_FULL);</code></p>
+<p>| input (constant) | Description | 
+| ----- | ----------- |
+| OPEN_CENTER_MODE_NONE | The user can not interact with any content in the center view. | 
+| OPEN_CENTER_MODE_FULL | The user can interact with all content in the center view. | 
+| OPEN_CENTER_MODE_NAVBAR | The user can interact with only content on the navigation bar. The setting allows the menu button to still respond, allowing you to toggle the drawer closed when it is open. This is the default setting. | </p>
+<h3>OpenDrawerGestureMode</h3>
+<p>Set gesture support for opening the drawer through a mask.  </p>
+<p><code>javascript
+mainWindow.setOpenDrawerGestureMode(NappDrawerModule.OPEN_MODE_BEZEL_PANNING_CENTERWINDOW);</code></p>
+<p>| input (constant) | Description | 
+| ----- | ----------- |
+| OPEN_MODE_NONE | The user can not open the drawer by panning. | 
+| OPEN_MODE_ALL | The user can open the drawer by panning anywhere. | 
+| OPEN_MODE_PANNING_NAVBAR | The user can open the drawer by panning anywhere on the navigation bar. | 
+| OPEN_MODE_PANNING_CENTERWINDOW | The user can open the drawer by panning anywhere on the center view. | 
+| OPEN_MODE_BEZEL_PANNING_CENTERWINDOW | The user can open the drawer by starting a pan anywhere within 20 points of the bezel. | </p>
+<h3>CloseDrawerGestureMode</h3>
+<p>Set gesture support for closing the drawer through a mask.</p>
+<p><code>javascript
+mainWindow.setCloseDrawerGestureMode(NappDrawerModule.CLOSE_MODE_TAP_CENTERWINDOW);</code></p>
+<p>| input (constant) | Description | 
+| ----- | ----------- |
+| CLOSE_MODE_NONE | The user cannot close the drawer by any panning gestures. | 
+| CLOSE_MODE_ALL | The user can close the drawer by panning anywhere. | 
+| CLOSE_MODE_PANNING_NAVBAR | The user can close the drawer by panning anywhere on the navigation bar. | 
+| CLOSE_MODE_PANNING_CENTERWINDOW | The user can close the drawer by panning anywhere on the center view. | 
+| CLOSE_MODE_BEZEL_PANNING_CENTERWINDOW | The user can close the drawer by starting a pan anywhere within the bezel of the center view. | 
+| CLOSE_MODE_TAP_NAVBAR | The user can close the drawer by tapping the navigation bar. | 
+| CLOSE_MODE_TAP_CENTERWINDOW | The user can close the drawer by tapping the center view. | 
+| CLOSE_MODE_PANNING_DRAWER | The user can close the drawer by panning anywhere on the drawer view. | </p>
+<p><em>Note that these gestures may impact touches sent to the child view controllers, so be sure to use these appropriately for your application.</em></p>
+<h3>AnimationVelocity</h3>
+<p>The animation velocity of the open and close methods, measured in points per second.
+By default, this is set to 840 points per second (three times the default drawer width), meaning it takes 1/3 of a second for the <code>Window</code> to open/close across the default drawer width. Note that there is a minimum .1 second duration for built in animations, to account for small distance animations.</p>
+<p><code>javascript
+mainWindow.setAnimationVelocity(400);</code></p>
+<h3>ShowShadow</h3>
+<p>Should the shadow be visible?</p>
+<p><code>javascript
+mainWindow.setShowShadow(true);</code></p>
+<h3>ShouldStretchDrawer</h3>
+<p>A small effect when the drawer is dragged, the drawer stretches.</p>
+<p><code>javascript
+mainWindow.setShouldStretchDrawer(true);</code></p>
+<h2>API Methods</h2>
+<h3>toggleLeftWindow, toggleRightWindow</h3>
+<p><code>toggleLeftWindow()</code> and <code>toggleRightWindow()</code> are used to toggle each visibility of either the left or right window. </p>
+<p><code>javascript
+mainWindow.toggleLeftWindow();</code></p>
+<h3>bounceLeftWindow, bounceRightWindow</h3>
+<p>A small animation to show the app user that its possible to interact with the drawer.</p>
+<p><code>javascript
+mainWindow.bounceLeftWindow();</code></p>
+<h2>Changelog</h2>
+<ul>
+<li>v1.0  </li>
+<li>init</li>
+</ul>
+<h2>Author</h2>
+<p><strong>Mads Moller</strong><br />
+web: http://www.napp.dk<br />
+email: mm@napp.dk<br />
+twitter: @nappdev  </p>
+<h2>License</h2>
+<pre><code>Copyright (c) 2010-2013 Mads Moller
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+</code></pre>

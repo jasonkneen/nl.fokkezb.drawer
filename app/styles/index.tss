@@ -1,0 +1,12 @@
+"#drawer": {
+    openDrawerGestureMode: "OPEN_MODE_ALL",
+    closeDrawerGestureMode: "CLOSE_MODE_MARGIN",
+    leftDrawerWidth: 200,
+    rightDrawerWidth: 200,
+
+    // switch between dk.napp.drawer and drawerlayout on Android
+    drawerLayout: true
+}
+"Window": {
+    backgroundColor: 'white'
+}
