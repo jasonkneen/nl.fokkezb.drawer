@@ -202,15 +202,15 @@ if (mod === 'dk.napp.drawer') {
 	};
 
 	$.isAnyWindowOpen = function () {
-		return $.instance.isLeftDrawerOpen() || $.instance.isRightDrawerOpen();
+		return $.instance.getIsLeftDrawerOpen() || $.instance.getIsRightDrawerOpen();
 	};
 
 	$.isLeftWindowOpen = function () {
-		return $.instance.isLeftDrawerOpen();
+		return $.instance.getIsLeftDrawerOpen();
 	};
 
 	$.isRightWindowOpen = function () {
-		return $.instance.isRightDrawerOpen();
+		return $.instance.getIsRightDrawerOpen();
 	};
 
 	$.leftWindow = $.leftView;
