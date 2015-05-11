@@ -54,36 +54,70 @@ _.each(consts, function (arg) {
 	}
 });
 
+//transform properties
+if (mod === 'dk.napp.drawer') {
+	if (_.has(args, 'drawerIndicatorEnabled')) {
+		args.hamburgerIcon = args.drawerIndicatorEnabled;
+		delete args.drawerIndicatorEnabled;
+	}
+	if (_.has(args, 'drawerArrowIcon')) {
+		args.arrowAnimation = args.drawerArrowIcon;
+		delete args.drawerArrowIcon;
+	}
+	if (_.has(args, 'drawerArrowIconColor')) {
+		args.hamburgerIconColor = args.drawerArrowIconColor;
+		delete args.drawerArrowIconColor;
+	}
+} else {
+	if (_.has(args, 'hamburgerIcon')) {
+		args.drawerIndicatorEnabled = args.hamburgerIcon;
+		delete args.hamburgerIcon;
+	}
+	if (_.has(args, 'arrowAnimation')) {
+		args.drawerArrowIcon = args.arrowAnimation;
+		delete args.arrowAnimation;
+	}
+	if (_.has(args, 'hamburgerIconColor')) {
+		args.drawerArrowIconColor = args.hamburgerIconColor;
+		delete args.hamburgerIconColor;
+	}
+}
+
 // delete irrelevant args
 delete args.id;
 delete args.__parentSymbol;
 delete args.children;
-
-// create actual drawer
-$.instance = $.module.createDrawer(_.omit(args, 'window'));
-
+	
 if (mod === 'dk.napp.drawer') {
+
+	_.extend(args, args.window || {});
+	
+	// create actual drawer
+	$.instance = $.module.createDrawer(_.omit(args, 'window'));
+	
+	$.window = $.instance;
 	$.addTopLevelView($.instance);
 
 } else {
-	$.window = Ti.UI.createWindow(_.defaults(args.window || {}, {
-		backgroundColor: 'white'
-	}));
+	// create actual drawer
+	$.instance = $.module.createDrawer(_.omit(args, 'window'));
+	
+	$.window = Ti.UI.createWindow(_.extend(_.pick(args, ["orientationModes", "exitOnClose", "backgroundColor"]), args.window || {}));
 	$.window.add($.instance);
-
-	$.window.addEventListener('open', function (e) {
-		var actionBar = e.source.activity.actionBar;
-
-		if (actionBar) {
-			actionBar.displayHomeAsUp = true;
-			actionBar.onHomeIconItemSelected = function () {
-				$.instance.toggleLeftWindow();
-			};
-		}
-	});
 
 	$.addTopLevelView($.window);
 }
+
+$.window.addEventListener('open', function (e) {
+	var actionBar = (mod === 'dk.napp.drawer' ? this : e.source).getActivity().getActionBar();
+
+	if (actionBar) {
+		actionBar.setDisplayHomeAsUp(true);
+		actionBar.setOnHomeIconItemSelected(function () {
+			$.instance.toggleLeftWindow();
+		});
+	}
+});
 
 var props;
 
@@ -105,8 +139,10 @@ if (mod === 'dk.napp.drawer') {
 		'shouldStretchDrawer',
 		'fading',
 		'parallaxAmount',
-		'statusBarStyle'
-
+		'statusBarStyle',
+		'hamburgerIcon',
+		'hamburgerIconColor',
+		'arrowAnimation'
 	];
 } else {
 	props = [
@@ -190,6 +226,18 @@ if (mod === 'dk.napp.drawer') {
 	$.rightView = $.rightWindow;
 	$.setRightView = $.setRightWindow;
 	$.getRightView = $.getRightWindow;
+	
+	$.drawerIndicatorEnabled = $.hamburgerIcon;
+	$.setDrawerIndicatorEnabled = $.setHamburgerIcon;
+	$.getDrawerIndicatorEnabled = $.getHamburgerIcon;
+	
+	$.drawerArrowIcon = $.arrowAnimation;
+	$.setDrawerArrowIcon = $.setArrowAnimation;
+	$.getDrawerArrowIcon = $.getArrowAnimation;
+	
+	$.drawerArrowIconColor = $.hamburgerIconColor;
+	$.setDrawerArrowIconColor = $.setHamburgerIconColor;
+	$.getDrawerArrowIconColor = $.getHamburgerIconColor;
 
 } else {
 
@@ -224,6 +272,18 @@ if (mod === 'dk.napp.drawer') {
 	$.rightWindow = $.rightView;
 	$.setRightWindow = $.setRightView;
 	$.getRightWindow = $.getRightView;
+	
+	$.hamburgerIcon = $.drawerIndicatorEnabled;
+	$.setHamburgerIcon = $.setDrawerIndicatorEnabled;
+	$.getHamburgerIcon = $.getDrawerIndicatorEnabled;
+	
+	$.arrowAnimation = $.drawerArrowIcon;
+	$.setArrowAnimation = $.setDrawerArrowIcon;
+	$.getArrowAnimation = $.getDrawerArrowIcon;
+	
+	$.hamburgerIconColor = $.drawerArrowIconColor;
+	$.setHamburgerIconColor = $.setDrawerArrowIconColor;
+	$.getHamburgerIconColor = $.getDrawerArrowIconColor;
 }
 
 // events
