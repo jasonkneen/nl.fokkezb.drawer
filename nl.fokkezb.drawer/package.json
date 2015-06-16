@@ -1,0 +1,29 @@
+{
+  "version": "1.1.1",
+  "description": "An Alloy widget wrapping the NappDrawer and DrawerLayout module for Facebook-like sliding side menus.",
+  "author": "Fokke Zandbergen",
+  "license": "Apache License, Version 2.0",
+  "name": "alloy-widget-nl.fokkezb.drawer",
+  "appc-npm": {
+    "target": {
+      "alloy": "app/widgets/nl.fokkezb.drawer"
+    },
+    "ignore": [
+      "package.json"
+    ]
+  },
+  "keywords": [
+    "slide",
+    "drawer",
+    "nappdrawer",
+    "drawerlayout",
+    "facebook",
+    "menu",
+    "side",
+    "appc-npm",
+    "alloy-widget"
+  ],
+  "scripts": {
+    "postinstall": "node ./appc-npm"
+  }
+}
