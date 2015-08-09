@@ -115,6 +115,9 @@ if(OS_ANDROID){
 		if (actionBar) {
 			actionBar.setDisplayHomeAsUp(true);
 			actionBar.setOnHomeIconItemSelected(function () {
+				if ($.instance.isRightDrawerVisible) {
+					return $.instance.toggleRightWindow();
+				}
 				$.instance.toggleLeftWindow();
 			});
 		}
