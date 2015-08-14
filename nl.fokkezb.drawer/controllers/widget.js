@@ -87,38 +87,38 @@ if (mod === 'dk.napp.drawer') {
 delete args.id;
 delete args.__parentSymbol;
 delete args.children;
-	
+
 if (mod === 'dk.napp.drawer') {
 
 	_.extend(args, args.window || {});
-	
+
 	// create actual drawer
 	$.instance = $.module.createDrawer(_.omit(args, 'window'));
-	
+
 	$.window = $.instance;
 	$.addTopLevelView($.instance);
 
 } else {
 	// create actual drawer
 	$.instance = $.module.createDrawer(_.omit(args, 'window'));
-	
+
 	$.window = Ti.UI.createWindow(_.extend(_.pick(args, ["orientationModes", "exitOnClose", "backgroundColor"]), args.window || {}));
 	$.window.add($.instance);
 
 	$.addTopLevelView($.window);
 }
 
-if(OS_ANDROID){
+if (OS_ANDROID) {
 	$.window.addEventListener('open', function (e) {
 		var actionBar = (mod === 'dk.napp.drawer' ? this : e.source).getActivity().getActionBar();
-	
+
 		if (actionBar) {
 			actionBar.setDisplayHomeAsUp(true);
 			actionBar.setOnHomeIconItemSelected(function () {
-				if ($.instance.isRightDrawerVisible) {
-					return $.instance.toggleRightWindow();
+				if ($.isRightWindowOpen()) {
+					return $.closeRightWindow();
 				}
-				$.instance.toggleLeftWindow();
+				$.toggleLeftWindow();
 			});
 		}
 	});
@@ -231,15 +231,15 @@ if (mod === 'dk.napp.drawer') {
 	$.rightView = $.rightWindow;
 	$.setRightView = $.setRightWindow;
 	$.getRightView = $.getRightWindow;
-	
+
 	$.drawerIndicatorEnabled = $.hamburgerIcon;
 	$.setDrawerIndicatorEnabled = $.setHamburgerIcon;
 	$.getDrawerIndicatorEnabled = $.getHamburgerIcon;
-	
+
 	$.drawerArrowIcon = $.arrowAnimation;
 	$.setDrawerArrowIcon = $.setArrowAnimation;
 	$.getDrawerArrowIcon = $.getArrowAnimation;
-	
+
 	$.drawerArrowIconColor = $.hamburgerIconColor;
 	$.setDrawerArrowIconColor = $.setHamburgerIconColor;
 	$.getDrawerArrowIconColor = $.getHamburgerIconColor;
@@ -277,15 +277,15 @@ if (mod === 'dk.napp.drawer') {
 	$.rightWindow = $.rightView;
 	$.setRightWindow = $.setRightView;
 	$.getRightWindow = $.getRightView;
-	
+
 	$.hamburgerIcon = $.drawerIndicatorEnabled;
 	$.setHamburgerIcon = $.setDrawerIndicatorEnabled;
 	$.getHamburgerIcon = $.getDrawerIndicatorEnabled;
-	
+
 	$.arrowAnimation = $.drawerArrowIcon;
 	$.setArrowAnimation = $.setDrawerArrowIcon;
 	$.getArrowAnimation = $.getDrawerArrowIcon;
-	
+
 	$.hamburgerIconColor = $.drawerArrowIconColor;
 	$.setHamburgerIconColor = $.setDrawerArrowIconColor;
 	$.getHamburgerIconColor = $.getDrawerArrowIconColor;
