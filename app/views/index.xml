@@ -2,7 +2,7 @@
     <Widget id="drawer" drawerLayout="true" src="nl.fokkezb.drawer">
 
         <Window module="xp.ui" role="leftWindow">
-            <Label>I am left</Label>
+            <Label onClick="toggle" window="Left">I am left, tap to close</Label>
         </Window>
 
         <NavigationWindow platform="ios" role="centerWindow">
@@ -17,11 +17,11 @@
             </Window>
         </NavigationWindow>
         <View platform="android" role="centerWindow">
-            <Label onClick="toggle" window="Right">I am center, click to toggle Right</Label>
+            <Label onClick="toggle" window="Right">I am center, tap to open Right</Label>
         </View>
 
         <Window module="xp.ui" role="rightWindow">
-            <Label>I am right</Label>
+            <Label onClick="toggle" window="Right">I am right, tap to close</Label>
         </Window>
 
     </Widget>
