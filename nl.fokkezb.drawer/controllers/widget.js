@@ -293,15 +293,15 @@ if (mod === 'dk.napp.drawer') {
 
 // events
 $.on = function (event, callback, context) {
-	return $.instance.addEventListener(event, callback);
+	return $.instance.addEventListener(translateEvent(event), callback);
 };
 
 $.off = function (event, callback, context) {
-	return $.instance.removeEventListener(event, callback);
+	return $.instance.removeEventListener(translateEvent(event), callback);
 };
 
 $.trigger = function (event, args) {
-	return $.instance.fireEvent(event, args);
+	return $.instance.fireEvent(translateEvent(event), args);
 };
 
 $.addEventListener = $.on;
@@ -345,3 +345,29 @@ _.each(methods, function (fn) {
 		};
 	}
 });
+
+function translateEvent(event) {
+	
+	if (mod === 'dk.napp.drawer') {
+		
+		if (event === 'draweropen') {
+			event = 'windowDidOpen';
+		}
+		
+		if (event === 'drawerclose') {
+			event = 'windowDidClose';
+		}
+		
+	} else {
+		
+		if (event === 'windowDidOpen') {
+			event = 'draweropen';
+		}
+		
+		if (event === 'windowDidClose') {
+			event = 'drawerclose';
+		}
+	}
+	
+	return event;
+}
