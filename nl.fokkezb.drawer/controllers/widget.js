@@ -102,7 +102,7 @@ if (mod === 'dk.napp.drawer') {
 	// create actual drawer
 	$.instance = $.module.createDrawer(_.omit(args, 'window'));
 
-	$.window = Ti.UI.createWindow(_.extend(_.pick(args, ["orientationModes", "exitOnClose", "backgroundColor"]), args.window || {}));
+	$.window = Ti.UI.createWindow(_.extend(_.pick(args, ["orientationModes", "exitOnClose", "backgroundColor", "theme"]), args.window || {}));
 	$.window.add($.instance);
 
 	$.addTopLevelView($.window);
