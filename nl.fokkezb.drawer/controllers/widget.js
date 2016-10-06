@@ -293,11 +293,17 @@ if (mod === 'dk.napp.drawer') {
 
 // events
 $.on = function (event, callback, context) {
-	return $.instance.addEventListener(translateEvent(event), callback);
+    if (mod !== 'dk.napp.drawer' && (event === 'open' || event === 'close')) {
+        return $.window.addEventListener(event, callback);
+    }
+    return $.instance.addEventListener(translateEvent(event), callback);
 };
 
 $.off = function (event, callback, context) {
-	return $.instance.removeEventListener(translateEvent(event), callback);
+    if (mod !== 'dk.napp.drawer' && (event === 'open' || event === 'close')) {
+        return $.window.addEventListener(event, callback);
+    }
+    return $.instance.removeEventListener(translateEvent(event), callback);
 };
 
 $.trigger = function (event, args) {
