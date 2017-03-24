@@ -110,6 +110,7 @@ The repository contains two branches. This master branch contains the widget. Th
 
 ## Changelog
 
+- 1.1.3: Remove NPM support, align versions
 - 1.1.2: Fixes #55
 - 1.1.1: Made distributable via NPM
 - 1.1.0: Added DrawerLayout support.
