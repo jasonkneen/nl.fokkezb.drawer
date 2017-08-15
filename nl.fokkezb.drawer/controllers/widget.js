@@ -293,14 +293,14 @@ if (mod === 'dk.napp.drawer') {
 
 // events
 $.on = function (event, callback, context) {
-    if (mod !== 'dk.napp.drawer' && (event === 'open' || event === 'close')) {
+    if (mod !== 'dk.napp.drawer' && (event === 'open' || event === 'close' || event === 'focus' || event === 'androidback')) {
         return $.window.addEventListener(event, callback);
     }
     return $.instance.addEventListener(translateEvent(event), callback);
 };
 
 $.off = function (event, callback, context) {
-    if (mod !== 'dk.napp.drawer' && (event === 'open' || event === 'close')) {
+    if (mod !== 'dk.napp.drawer' && (event === 'open' || event === 'close' || event === 'focus' || event === 'androidback')) {
         return $.window.addEventListener(event, callback);
     }
     return $.instance.removeEventListener(translateEvent(event), callback);
