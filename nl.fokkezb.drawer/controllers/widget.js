@@ -3,12 +3,15 @@ var args = arguments[0] || {};
 var mod;
 
 if (OS_ANDROID && args.drawerLayout) {
-	mod = 'com.tripvi.drawerlayout';
+	// if Titanium SDK is 6.2 use the drawer included in the Titanium API, not use external module
+	if ( parseFloat(Ti.version) < 6.2 ) { // use module
+		mod = 'com.tripvi.drawerlayout';
+		$.module = require(mod);
+	}
 } else {
 	mod = 'dk.napp.drawer';
+	$.module = require(mod);
 }
-
-$.module = require(mod);
 
 // convert children to args based on role
 if (args.children) {
@@ -100,7 +103,11 @@ if (mod === 'dk.napp.drawer') {
 
 } else {
 	// create actual drawer
-	$.instance = $.module.createDrawer(_.omit(args, 'window'));
+	if ( parseFloat(Ti.version) < 6.2 ) { // use module
+		$.instance = $.module.createDrawer(_.omit(args, 'window'));
+	} else { // use Titanium API
+		$.instance = Ti.UI.Android.createDrawerLayout(_.omit(args, 'window'));
+	}
 
 	$.window = Ti.UI.createWindow(_.extend(_.pick(args, ["orientationModes", "exitOnClose", "backgroundColor", "theme"]), args.window || {}));
 	$.window.add($.instance);
@@ -150,22 +157,40 @@ if (mod === 'dk.napp.drawer') {
 		'arrowAnimation'
 	];
 } else {
-	props = [
-		'leftView',
-		'rightView',
-		'centerView',
-		'isLeftDrawerOpen',
-		'isLeftDrawerVisible',
-		'isRightDrawerOpen',
-		'isRightDrawerVisible',
-		'leftDrawerWidth',
-		'rightDrawerWidth',
-		'drawerIndicatorEnabled',
-		'drawerIndicatorImage',
-		'drawerLockMode',
-		'drawerArrowIcon',
-		'drawerArrowIconColor'
-	];
+	
+	if ( parseFloat(Ti.version) < 6.2 ) { // use module
+		props = [
+			'leftView',
+			'rightView',
+			'centerView',
+			'isLeftDrawerOpen',
+			'isLeftDrawerVisible',
+			'isRightDrawerOpen',
+			'isRightDrawerVisible',
+			'leftDrawerWidth',
+			'rightDrawerWidth',
+			'drawerIndicatorEnabled',
+			'drawerIndicatorImage',
+			'drawerLockMode',
+			'drawerArrowIcon',
+			'drawerArrowIconColor'
+		];
+	} else { // use native drawer provided on Titanium SDK 6.2
+		props = [
+			'leftView',
+			'rightView',
+			'centerView',
+			'isLeftOpen',
+			'isLeftVisible',
+			'isRightOpen',
+			'isRightVisible',
+			'leftWidth',
+			'rightWidth',
+			'drawerIndicatorEnabled',
+			'drawerLockMode',
+			'toolbarEnabled'
+		];
+	}
 }
 
 // expose properties, setters and getters
@@ -265,6 +290,48 @@ if (mod === 'dk.napp.drawer') {
 	$.isRightWindowOpen = function () {
 		return $.instance.getIsRightDrawerOpen();
 	};
+	
+	// the Titanium drawer API names differs from the external module API names
+	// so we need to overwrite and create new functions to map to the right methods 
+	if ( parseFloat(Ti.version) >= 6.2 ) {
+		// overwrite functions to map to the correct names
+		$.isAnyWindowOpen = function () {
+			return $.instance.isLeftOpen || $.instance.isRightOpen;
+		};
+	
+		$.isLeftWindowOpen = function () {
+			return $.instance.isLeftOpen;
+		};
+	
+		$.isRightWindowOpen = function () {
+			return $.instance.isRightOpen;
+		};
+		
+		// create new functions to map to the correct function names
+		$.toggleLeftWindow = function () {
+			return $.instance.toggleLeft();
+		};
+		
+		$.openLeftWindow = function () {
+			return $.instance.openLeft();
+		};
+		
+		$.closeLeftWindow = function () {
+			return $.instance.closeLeft();
+		};
+		
+		$.toggleRightWindow = function () {
+			return $.instance.toggleRight();
+		};
+		
+		$.openRightWindow = function () {
+			return $.instance.openRight();
+		};
+		
+		$.closeRightWindow = function () {
+			return $.instance.closeRight();
+		};
+	}
 
 	$.leftWindow = $.leftView;
 	$.setLeftWindow = $.setLeftView;
@@ -329,15 +396,27 @@ if (mod === 'dk.napp.drawer') {
 		'close'
 	];
 } else {
-	methods = [
-		'replaceCenterView',
-		'toggleLeftWindow',
-		'openLeftWindow',
-		'closeLeftWindow',
-		'toggleRightWindow',
-		'openRightWindow',
-		'closeRightWindow'
-	];
+	if ( parseFloat(Ti.version) < 6.2 ) { // use module
+		methods = [
+			'replaceCenterView',
+			'toggleLeftWindow',
+			'openLeftWindow',
+			'closeLeftWindow',
+			'toggleRightWindow',
+			'openRightWindow',
+			'closeRightWindow'
+		];
+	} else { // use native drawer provided on Titanium SDK 6.2
+		methods = [
+			'replaceCenterView',
+			'toggleLeft',
+			'openLeft',
+			'closeLeft',
+			'toggleRight',
+			'openRight',
+			'closeRight'
+		];
+	}
 }
 
 // exporse other methods
